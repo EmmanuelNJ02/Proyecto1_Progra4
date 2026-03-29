@@ -13,6 +13,7 @@ public class RegistroOferenteForm {
     private String clave;
 
     public RegistroOferenteForm() {
+
     }
 
     public String getIdentificacion() {
@@ -87,4 +88,3 @@ public class RegistroOferenteForm {
         this.clave = clave;
     }
 }
-

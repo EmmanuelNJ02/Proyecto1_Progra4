@@ -1,11 +1,11 @@
 package com.example.proyecto1.dtos.products;
 
 public class LoginForm {
-
     private String correo;
     private String clave;
 
     public LoginForm() {
+
     }
 
     public String getCorreo() {
@@ -24,4 +24,3 @@ public class LoginForm {
         this.clave = clave;
     }
 }
-

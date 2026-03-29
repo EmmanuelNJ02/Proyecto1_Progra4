@@ -5,6 +5,7 @@ public class BusquedaPuestoForm {
     private Integer caracteristicaId;
 
     public BusquedaPuestoForm() {
+
     }
 
     public Integer getCaracteristicaId() {
@@ -15,4 +16,3 @@ public class BusquedaPuestoForm {
         this.caracteristicaId = caracteristicaId;
     }
 }
-

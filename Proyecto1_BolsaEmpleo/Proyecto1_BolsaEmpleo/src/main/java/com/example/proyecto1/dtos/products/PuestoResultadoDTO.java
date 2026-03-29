@@ -5,11 +5,14 @@ import java.math.BigDecimal;
 public class PuestoResultadoDTO {
 
     private Integer id;
+
     private String empresa;
     private String descripcionGeneral;
+
     private BigDecimal salario;
 
     public PuestoResultadoDTO() {
+
     }
 
     public PuestoResultadoDTO(Integer id, String empresa, String descripcionGeneral, BigDecimal salario) {
@@ -51,4 +54,3 @@ public class PuestoResultadoDTO {
         this.salario = salario;
     }
 }
-

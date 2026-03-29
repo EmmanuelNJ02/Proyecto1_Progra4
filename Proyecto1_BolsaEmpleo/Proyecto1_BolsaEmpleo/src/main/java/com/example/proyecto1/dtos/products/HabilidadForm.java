@@ -1,6 +1,7 @@
 package com.example.proyecto1.dtos.products;
 
 public class HabilidadForm {
+
     private Integer caracteristicaId;
     private Integer nivel;
 

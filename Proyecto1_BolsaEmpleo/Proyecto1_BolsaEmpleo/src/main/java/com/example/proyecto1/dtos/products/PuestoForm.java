@@ -5,8 +5,11 @@ import java.math.BigDecimal;
 public class PuestoForm {
 
     private String descripcionGeneral;
+
     private BigDecimal salario;
+
     private String tipoPublicacion;
+
     private Integer caracteristicaId1;
     private Integer nivel1;
     private Integer caracteristicaId2;

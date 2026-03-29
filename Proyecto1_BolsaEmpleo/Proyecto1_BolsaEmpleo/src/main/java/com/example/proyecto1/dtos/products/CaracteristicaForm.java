@@ -1,6 +1,7 @@
 package com.example.proyecto1.dtos.products;
 
 public class CaracteristicaForm {
+    
     private String nombre;
     private Integer padreId;
 

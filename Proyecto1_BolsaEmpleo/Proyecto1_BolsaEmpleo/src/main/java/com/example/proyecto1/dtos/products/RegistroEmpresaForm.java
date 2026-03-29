@@ -10,6 +10,7 @@ public class RegistroEmpresaForm {
     private String clave;
 
     public RegistroEmpresaForm() {
+
     }
 
     public String getNombreEmpresa() {
@@ -60,4 +61,3 @@ public class RegistroEmpresaForm {
         this.clave = clave;
     }
 }
-
