@@ -4,8 +4,11 @@ import com.example.proyecto1.dtos.products.BusquedaPuestoForm;
 import com.example.proyecto1.models.Puesto;
 import com.example.proyecto1.services.CaracteristicaService;
 import com.example.proyecto1.services.PublicService;
+
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;

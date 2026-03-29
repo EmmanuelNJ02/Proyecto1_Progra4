@@ -1,20 +1,27 @@
 package com.example.proyecto1.controllers;
 
 import com.example.proyecto1.dtos.products.PuestoForm;
+
 import com.example.proyecto1.models.Oferente;
 import com.example.proyecto1.models.OferenteHabilidad;
 import com.example.proyecto1.models.Puesto;
+
 import com.example.proyecto1.services.CaracteristicaService;
 import com.example.proyecto1.services.EmpresaService;
 import com.example.proyecto1.services.OferenteService;
+
 import jakarta.servlet.http.HttpSession;
+
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+
 import com.example.proyecto1.exceptions.NoEncontrado;
+
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;

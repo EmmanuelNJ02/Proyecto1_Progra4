@@ -3,11 +3,15 @@ package com.example.proyecto1.controllers;
 import com.example.proyecto1.dtos.products.LoginForm;
 import com.example.proyecto1.dtos.products.RegistroEmpresaForm;
 import com.example.proyecto1.dtos.products.RegistroOferenteForm;
+
 import com.example.proyecto1.models.Empresa;
 import com.example.proyecto1.models.Oferente;
 import com.example.proyecto1.models.Usuario;
+
 import com.example.proyecto1.services.AuthService;
+
 import jakarta.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

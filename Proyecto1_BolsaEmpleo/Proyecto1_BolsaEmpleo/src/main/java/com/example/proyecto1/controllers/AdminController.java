@@ -3,10 +3,14 @@ package com.example.proyecto1.controllers;
 import com.example.proyecto1.dtos.products.CaracteristicaForm;
 import com.example.proyecto1.services.AdminService;
 import com.example.proyecto1.services.CaracteristicaService;
+
 import com.lowagie.text.DocumentException;
+
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+
 import com.example.proyecto1.exceptions.NoEncontrado;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,7 +59,6 @@ public class AdminController {
         model.addAttribute("usuarios", adminService.listarOferentesPendientes());
         return "admin/oferentes-pendientes";
     }
-
 
     @GetMapping("/aprobar/{usuarioId}")
     public String aprobar(@PathVariable Integer usuarioId, HttpSession session) {

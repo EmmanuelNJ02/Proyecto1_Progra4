@@ -2,6 +2,7 @@ package com.example.proyecto1.controllers;
 
 import com.example.proyecto1.models.Usuario;
 import com.example.proyecto1.repositories.UsuarioRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -16,12 +17,10 @@ public class UsuarioController {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-
     @GetMapping
     public List<Usuario> getAllUsuarios() {
         return usuarioRepository.findAll();
     }
-
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> getUsuarioById(@PathVariable Integer id) {
@@ -29,23 +28,19 @@ public class UsuarioController {
         return usuario.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-
     @GetMapping("/buscar")
     public ResponseEntity<Usuario> getUsuarioByCorreo(@RequestParam String correo) {
         Optional<Usuario> usuario = usuarioRepository.findByCorreoElectronico(correo);
         return usuario.map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
-
     @PostMapping
     public Usuario createUsuario(@RequestBody Usuario usuario) {
-        // Aseguramos que fechaRegistro se setee si no viene
         if (usuario.getFechaRegistro() == null) {
             usuario.setFechaRegistro(java.time.LocalDateTime.now());
         }
         return usuarioRepository.save(usuario);
     }
-
 
     @PutMapping("/{id}")
     public ResponseEntity<Usuario> updateUsuario(@PathVariable Integer id, @RequestBody Usuario usuarioDetails) {
@@ -65,7 +60,6 @@ public class UsuarioController {
         }
     }
 
-
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUsuario(@PathVariable Integer id) {
         if (usuarioRepository.existsById(id)) {
@@ -76,7 +70,6 @@ public class UsuarioController {
         }
     }
 
-    // Endpoint de prueba simple
     @GetMapping("/test")
     public String test() {
         return "UsuarioController funcionando";
