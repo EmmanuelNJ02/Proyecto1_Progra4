@@ -8,6 +8,7 @@ import java.util.List;
 @Table(name = "oferente")
 public class Oferente {
 
+
     @Id
     private Integer usuarioId;
 

@@ -10,5 +10,6 @@ import java.util.List;
 public interface OferenteHabilidadRepository extends JpaRepository<OferenteHabilidad, OferenteHabilidad.OferenteHabilidadId> {
 
     List<OferenteHabilidad> findByOferente_UsuarioId(Integer oferenteId);
+    
 }
 

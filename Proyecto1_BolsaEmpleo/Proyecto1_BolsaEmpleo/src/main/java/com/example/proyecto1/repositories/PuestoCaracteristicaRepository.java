@@ -12,6 +12,7 @@ public interface PuestoCaracteristicaRepository extends JpaRepository<PuestoCara
     List<PuestoCaracteristica> findByCaracteristica_Id(Integer caracteristicaId);
 
     List<PuestoCaracteristica> findByPuesto_Id(Integer puestoId);
+
 }
 
 

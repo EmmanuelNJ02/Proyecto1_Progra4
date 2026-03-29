@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "administrador")
 public class Administrador {
 
+
     @Id
     private Integer usuarioId;
 

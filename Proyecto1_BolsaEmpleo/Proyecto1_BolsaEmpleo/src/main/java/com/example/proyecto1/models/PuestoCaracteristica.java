@@ -8,6 +8,7 @@ import java.util.Objects;
 @Table(name = "puesto_caracteristica")
 public class PuestoCaracteristica {
 
+
     @EmbeddedId
     private PuestoCaracteristicaId id;
 

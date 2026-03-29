@@ -12,10 +12,12 @@ html {
   line-height: 1.4;
 }
 
+
 ::-moz-selection {
   background: #b3d4fc;
   text-shadow: none;
 }
+
 
 ::selection {
   background: #b3d4fc;
@@ -27,6 +29,7 @@ html {
   margin: 0;
   padding: 0;
 }
+
 
 body {
   font-family: Arial, sans-serif;
@@ -42,6 +45,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
 
 hr {
   display: block;

@@ -19,4 +19,5 @@ public interface PuestoRepository extends JpaRepository<Puesto, Integer> {
     List<Puesto> findTop5ByTipoPublicacionAndActivoTrueOrderByFechaPublicacionDesc(Puesto.TipoPublicacion tipoPublicacion);
 
     Optional<Puesto> findByIdAndEmpresaUsuarioId(Integer id, Integer empresaUsuarioId);
+
 }

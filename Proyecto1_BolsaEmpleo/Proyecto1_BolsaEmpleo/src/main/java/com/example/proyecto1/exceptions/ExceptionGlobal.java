@@ -13,6 +13,7 @@ public class ExceptionGlobal {
         return "error/no-encontrado";
     }
 
+
     @ExceptionHandler(Exception.class)
     public String errorGeneral(Exception e, Model model) {
         model.addAttribute("error", "Ocurrió un error inesperado");

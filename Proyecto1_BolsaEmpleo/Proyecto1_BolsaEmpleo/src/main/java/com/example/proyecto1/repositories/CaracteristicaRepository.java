@@ -8,7 +8,10 @@ import java.util.List;
 
 @Repository
 public interface CaracteristicaRepository extends JpaRepository<Caracteristica, Integer> {
+
     List<Caracteristica> findByCaracteristicaPadreIsNull();
+
     List<Caracteristica> findByCaracteristicaPadreId(Integer padreId);
+
     List<Caracteristica> findByNombreCaracteristicaContainingIgnoreCase(String nombreCaracteristica);
 }
