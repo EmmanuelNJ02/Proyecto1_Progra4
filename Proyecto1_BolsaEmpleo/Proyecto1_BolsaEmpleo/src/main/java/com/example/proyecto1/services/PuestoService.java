@@ -2,6 +2,7 @@ package com.example.proyecto1.services;
 
 import com.example.proyecto1.models.Puesto;
 import com.example.proyecto1.repositories.PuestoRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -43,4 +44,3 @@ public class PuestoService {
         puestoRepository.save(puesto);
     }
 }
-

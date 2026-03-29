@@ -2,12 +2,15 @@ package com.example.proyecto1.services;
 
 import com.example.proyecto1.dtos.products.RegistroEmpresaForm;
 import com.example.proyecto1.dtos.products.RegistroOferenteForm;
+
 import com.example.proyecto1.models.Empresa;
 import com.example.proyecto1.models.Oferente;
 import com.example.proyecto1.models.Usuario;
+
 import com.example.proyecto1.repositories.EmpresaRepository;
 import com.example.proyecto1.repositories.OferenteRepository;
 import com.example.proyecto1.repositories.UsuarioRepository;
+
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -128,6 +131,5 @@ public class AuthService {
     private boolean estaVacio(String valor) {
         return valor == null || valor.isBlank();
     }
-
 
 }

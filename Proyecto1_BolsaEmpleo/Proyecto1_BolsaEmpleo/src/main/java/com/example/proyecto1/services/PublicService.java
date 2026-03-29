@@ -4,8 +4,10 @@ import com.example.proyecto1.dtos.products.PuestoResultadoDTO;
 import com.example.proyecto1.models.Caracteristica;
 import com.example.proyecto1.models.Puesto;
 import com.example.proyecto1.models.PuestoCaracteristica;
+
 import com.example.proyecto1.repositories.PuestoCaracteristicaRepository;
 import com.example.proyecto1.repositories.PuestoRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

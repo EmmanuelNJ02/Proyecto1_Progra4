@@ -3,21 +3,26 @@ package com.example.proyecto1.services;
 import com.example.proyecto1.models.Caracteristica;
 import com.example.proyecto1.models.Oferente;
 import com.example.proyecto1.models.OferenteHabilidad;
+
 import com.example.proyecto1.repositories.CaracteristicaRepository;
 import com.example.proyecto1.repositories.OferenteHabilidadRepository;
 import com.example.proyecto1.repositories.OferenteRepository;
+
 import com.example.proyecto1.config.AppProperties;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.InvalidPathException;
 import java.nio.file.StandardCopyOption;
+
 import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
@@ -141,7 +146,7 @@ public class OferenteService {
                 return Paths.get(rutaConfigurada).toAbsolutePath().normalize();
             }
         } catch (InvalidPathException e) {
-            // Si la ruta configurada es inválida, se utiliza la ruta por defecto.
+
         }
         return Paths.get(System.getProperty("user.home"), "bolsa_empleo_uploads", "cv").toAbsolutePath().normalize();
     }

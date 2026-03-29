@@ -4,6 +4,7 @@ import com.example.proyecto1.models.Puesto;
 import com.example.proyecto1.models.Usuario;
 import com.example.proyecto1.repositories.PuestoRepository;
 import com.example.proyecto1.repositories.UsuarioRepository;
+
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
 import com.lowagie.text.Font;
@@ -13,7 +14,9 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
+
 import jakarta.servlet.http.HttpServletResponse;
+
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

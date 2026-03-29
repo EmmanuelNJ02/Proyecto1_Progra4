@@ -2,19 +2,23 @@ package com.example.proyecto1.services;
 
 import com.example.proyecto1.dtos.products.CandidatoResultadoDTO;
 import com.example.proyecto1.dtos.products.PuestoForm;
+
 import com.example.proyecto1.models.Caracteristica;
 import com.example.proyecto1.models.Empresa;
 import com.example.proyecto1.models.Oferente;
 import com.example.proyecto1.models.OferenteHabilidad;
 import com.example.proyecto1.models.Puesto;
 import com.example.proyecto1.models.PuestoCaracteristica;
+
 import com.example.proyecto1.repositories.CaracteristicaRepository;
 import com.example.proyecto1.repositories.EmpresaRepository;
 import com.example.proyecto1.repositories.OferenteHabilidadRepository;
 import com.example.proyecto1.repositories.OferenteRepository;
 import com.example.proyecto1.repositories.PuestoCaracteristicaRepository;
 import com.example.proyecto1.repositories.PuestoRepository;
+
 import com.example.proyecto1.exceptions.NoEncontrado;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -247,6 +251,5 @@ public class EmpresaService {
     public List<OferenteHabilidad> listarHabilidadesOferente(Integer usuarioId) {
         return oferenteHabilidadRepository.findByOferente_UsuarioId(usuarioId);
     }
-
 
 }

@@ -2,6 +2,7 @@ package com.example.proyecto1.services;
 
 import com.example.proyecto1.models.Usuario;
 import com.example.proyecto1.repositories.UsuarioRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,4 +47,3 @@ public class UsuarioService {
         usuarioRepository.save(usuario);
     }
 }
-

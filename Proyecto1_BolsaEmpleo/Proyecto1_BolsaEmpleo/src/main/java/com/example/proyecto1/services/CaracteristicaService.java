@@ -2,6 +2,7 @@ package com.example.proyecto1.services;
 
 import com.example.proyecto1.models.Caracteristica;
 import com.example.proyecto1.repositories.CaracteristicaRepository;
+
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
