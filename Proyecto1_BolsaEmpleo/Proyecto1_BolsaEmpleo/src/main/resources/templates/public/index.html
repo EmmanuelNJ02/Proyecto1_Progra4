@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolsa de empleo</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Bolsa de Empleo</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/buscar-puestos}">Buscar puestos</a>
+            <a th:href="@{/registro/empresa}">Registrar empresa</a>
+            <a th:href="@{/registro/oferente}">Registrar oferente</a>
+            <a th:href="@{/login}">Login</a>
+        </nav>
+    </div>
+</header>
+
+<section class="hero">
+    <div class="contenedor">
+        <div class="hero-card">
+            <h1>Encuentra oportunidades y talento en un solo lugar</h1>
+            <p>Consulta los puestos públicos más recientes, revisa los requisitos solicitados y utiliza la búsqueda por características para ubicar vacantes que coincidan con tu perfil.</p>
+            <div class="center-actions">
+                <a class="boton" th:href="@{/buscar-puestos}">Buscar puestos</a>
+                <a class="boton boton-secundario" th:href="@{/login}">Ingresar al sistema</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<main class="pagina">
+    <div class="contenedor">
+        <div class="panel-header">
+            <div>
+                <h2 class="titulo-pagina">Últimos puestos públicos</h2>
+                <p class="subtitulo-pagina">Se muestran los 5 puestos públicos más recientes. Al pasar el mouse sobre cada tarjeta también podrás ver el detalle resumido de requisitos.</p>
+            </div>
+        </div>
+
+        <div th:if="${#lists.isEmpty(puestosRecientes)}" class="vacio">No hay puestos registrados todavía.</div>
+
+        <div th:if="${not #lists.isEmpty(puestosRecientes)}" class="grid grid-3">
+            <article class="card job-card tooltip-card" th:each="puesto : ${puestosRecientes}" th:title="${resumenesRequisitos[puesto.id]}">
+                <div class="inline-meta">
+                    <span class="badge" th:text="${puesto.tipoPublicacion}"></span>
+                    <span class="badge badge-success" th:text="${puesto.activo ? 'Activo' : 'Inactivo'}"></span>
+                </div>
+                <h3 th:text="${puesto.empresa.nombreEmpresa}"></h3>
+                <p th:text="${puesto.descripcionGeneral}"></p>
+                <div class="salary">₡ <span th:text="${#numbers.formatDecimal(puesto.salario,1,2)}"></span></div>
+                <div class="tooltip-box">
+                    <strong>Requisitos solicitados</strong>
+                    <p th:text="${resumenesRequisitos[puesto.id]}"></p>
+                </div>
+                <p class="hint" style="margin-top:8px;">Pase el mouse sobre la tarjeta para ver el detalle de requisitos.</p>
+            </article>
+        </div>
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="contenedor">
+        <span>Consulta pública de puestos</span>
+        <span>Universidad Nacional</span>
+    </div>
+</footer>
+
+</body>
+</html>

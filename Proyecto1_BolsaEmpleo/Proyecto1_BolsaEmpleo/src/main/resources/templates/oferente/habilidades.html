@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis habilidades</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Mis habilidades y CV</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/oferente/dashboard}">Dashboard</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+        <div class="grid grid-2">
+
+            <!-- Tabla de habilidades -->
+            <section class="panel">
+                <h1 class="titulo-pagina">Mis habilidades</h1>
+
+                <div th:if="${errorHabilidad}" class="alert alert-error" th:text="${errorHabilidad}"></div>
+                <div th:if="${mensajeHabilidad}" class="alert alert-success" th:text="${mensajeHabilidad}"></div>
+                <div th:if="${#lists.isEmpty(habilidades)}" class="vacio">
+                    Aún no has registrado habilidades.
+                </div>
+
+                <div th:if="${not #lists.isEmpty(habilidades)}" class="contenedor-tabla">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Característica</th>
+                            <th>Nivel</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="h : ${habilidades}">
+                            <td th:text="${h.caracteristica.nombreCaracteristica}"></td>
+                            <td th:text="${h.nivel}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <section class="panel">
+                <h2 class="titulo-pagina" style="font-size:1.6rem;">Agregar o actualizar habilidad</h2>
+
+                <form th:action="@{/oferente/habilidades}" method="post" th:object="${habilidadForm}">
+                    <div class="form-grid">
+                        <div>
+                            <label>Característica</label>
+                            <select th:field="*{caracteristicaId}">
+                                <option value="">-- Seleccione --</option>
+                                <option th:each="c : ${caracteristicas}" th:value="${c.id}" th:text="${c.nombreCaracteristica}"></option>
+                            </select>
+                        </div>
+                        <div>
+                            <label>Nivel</label>
+                            <input type="number" min="1" max="5" th:field="*{nivel}" placeholder="Nivel (1-5)">
+                        </div>
+                    </div>
+                    <div class="acciones" style="margin-top:18px;">
+                        <button type="submit" class="boton">Guardar habilidad</button>
+                    </div>
+                </form>
+
+                <hr style="margin:24px 0; border:none; border-top:1px solid #e5e7eb;">
+
+                <!-- Subir CV PDF -->
+                <h2 class="titulo-pagina" style="font-size:1.6rem;">Currículo PDF</h2>
+
+                <div th:if="${errorCv}" class="alert alert-error" th:text="${errorCv}"></div>
+                <div th:if="${mensajeCv}" class="alert alert-success" th:text="${mensajeCv}"></div>
+
+                <form th:action="@{/oferente/cv}" method="post" enctype="multipart/form-data">
+                    <div class="form-grid">
+                        <div>
+                            <label>Seleccione archivo PDF</label>
+                            <input type="file" name="archivo" accept="application/pdf,.pdf">
+                        </div>
+                    </div>
+                    <div class="acciones" style="margin-top:18px;">
+                        <button type="submit" class="boton">Subir CV</button>
+                        <a class="boton boton-secundario"
+                           th:if="${oferente != null and oferente.rutaCurriculum != null and !#strings.isEmpty(oferente.rutaCurriculum)}"
+                           th:href="@{/oferente/cv}" target="_blank">
+                            Ver mi CV en PDF
+                        </a>
+                    </div>
+                </form>
+
+                <p class="form-help" th:if="${oferente != null and oferente.rutaCurriculum != null and !#strings.isEmpty(oferente.rutaCurriculum)}">
+                    CV cargado correctamente.
+                </p>
+                <p class="form-help" th:if="${oferente == null or oferente.rutaCurriculum == null or #strings.isEmpty(oferente.rutaCurriculum)}">
+                    Todavía no has subido tu CV.
+                </p>
+
+            </section>
+
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard empresa</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Panel de empresa</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/empresa/dashboard}">Dashboard</a>
+            <a th:href="@{/empresa/nuevo}">Publicar puesto</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+
+        <section class="panel">
+            <div class="acciones" style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <h1 class="titulo-pagina">Empresa - Dashboard</h1>
+                    <p class="subtitulo-pagina">
+                        Administre sus puestos y busque candidatos compatibles con los requisitos definidos.
+                    </p>
+                </div>
+                <div>
+                    <a class="boton" th:href="@{/empresa/nuevo}">Publicar nuevo puesto</a>
+                </div>
+            </div>
+
+            <div th:if="${#lists.isEmpty(puestos)}" class="vacio">
+                No tiene puestos registrados.
+            </div>
+
+            <div th:if="${not #lists.isEmpty(puestos)}" class="contenedor-tabla">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Salario</th>
+                        <th>Publicación</th>
+                        <th>Activo</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="p : ${puestos}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.descripcionGeneral}"></td>
+                        <td th:text="${#numbers.formatDecimal(p.salario,1,2)}"></td>
+                        <td>
+                            <span class="badge" th:text="${p.tipoPublicacion}"></span>
+                        </td>
+                        <td>
+                                <span class="badge" th:classappend="${p.activo ? ' badge-success' : ''}"
+                                      th:text="${p.activo ? 'Sí' : 'No'}"></span>
+                        </td>
+                        <td>
+                            <div class="acciones">
+                                <a class="boton boton-secundario" th:if="${p.activo}" th:href="@{'/empresa/desactivar/' + ${p.id}}">
+                                    Desactivar
+                                </a>
+                                <a class="boton boton-secundario" th:unless="${p.activo}" th:href="@{'/empresa/activar/' + ${p.id}}">
+                                    Activar
+                                </a>
+                                <a class="boton" th:href="@{'/empresa/candidatos/' + ${p.id}}">
+                                    Buscar candidatos
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+</body>
+</html>

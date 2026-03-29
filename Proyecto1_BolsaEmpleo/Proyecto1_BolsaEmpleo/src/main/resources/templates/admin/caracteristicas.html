@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Características</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Características</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/admin/dashboard}">Dashboard</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+        <div class="rejilla rejilla-2">
+
+
+            <section class="panel">
+                <h1 class="titulo-pagina">Listado de características</h1>
+
+                <div class="contenedor-tabla">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Padre</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="c : ${caracteristicas}">
+                            <td th:text="${c.id}"></td>
+                            <td th:text="${c.nombreCaracteristica}"></td>
+                            <td th:text="${c.caracteristicaPadre != null ? c.caracteristicaPadre.nombreCaracteristica : 'Raíz'}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+
+            <section class="panel">
+                <h2 class="titulo-pagina" style="font-size:1.7rem;">Agregar característica</h2>
+
+                <form th:action="@{/admin/caracteristicas}" method="post" th:object="${caracteristicaForm}">
+                    <div class="rejilla-formulario">
+
+                        <div>
+                            <label>Nombre</label>
+                            <input type="text" th:field="*{nombre}" placeholder="Nombre de la característica">
+                        </div>
+
+                        <div>
+                            <label>Padre</label>
+                            <select th:field="*{padreId}">
+                                <option value="">Raíz</option>
+                                <option th:each="c : ${raices}" th:value="${c.id}" th:text="${c.nombreCaracteristica}"></option>
+                            </select>
+                        </div>
+
+                    </div>
+
+                    <div class="acciones" style="margin-top:18px;">
+                        <button type="submit">Crear</button>
+                    </div>
+                </form>
+            </section>
+
+        </div>
+    </div>
+</main>
+
+</body>
+</html>

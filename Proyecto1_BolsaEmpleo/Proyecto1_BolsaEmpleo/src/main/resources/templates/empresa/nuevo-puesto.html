@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo puesto</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Publicar puesto</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/empresa/dashboard}">Dashboard</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+        <section class="panel">
+
+            <h1 class="titulo-pagina">Publicar nuevo puesto</h1>
+            <p class="subtitulo-pagina">
+                Defina la descripción general, salario, tipo de publicación y hasta tres requisitos con su nivel deseado.
+            </p>
+
+            <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+            <form th:action="@{/empresa/guardar}" method="post" th:object="${puestoForm}">
+                <div class="form-grid form-grid-2">
+                    <div style="grid-column:1/-1;">
+                        <label>Descripción general</label>
+                        <textarea th:field="*{descripcionGeneral}"></textarea>
+                    </div>
+
+                    <div>
+                        <label>Salario</label>
+                        <input type="number" step="0.01" th:field="*{salario}">
+                    </div>
+
+                    <div>
+                        <label>Tipo de publicación</label>
+                        <select th:field="*{tipoPublicacion}">
+                            <option value="">-- Seleccione --</option>
+                            <option value="PUBLICO">Público</option>
+                            <option value="PRIVADO">Privado</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Característica 1</label>
+                        <select th:field="*{caracteristicaId1}">
+                            <option value="">-- Seleccione --</option>
+                            <option th:each="c : ${caracteristicas}" th:value="${c.id}" th:text="${c.nombreCaracteristica}"></option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Nivel 1</label>
+                        <input type="number" min="1" max="5" th:field="*{nivel1}">
+                    </div>
+
+                    <div>
+                        <label>Característica 2</label>
+                        <select th:field="*{caracteristicaId2}">
+                            <option value="">-- Seleccione --</option>
+                            <option th:each="c : ${caracteristicas}" th:value="${c.id}" th:text="${c.nombreCaracteristica}"></option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Nivel 2</label>
+                        <input type="number" min="1" max="5" th:field="*{nivel2}">
+                    </div>
+
+                    <div>
+                        <label>Característica 3</label>
+                        <select th:field="*{caracteristicaId3}">
+                            <option value="">-- Seleccione --</option>
+                            <option th:each="c : ${caracteristicas}" th:value="${c.id}" th:text="${c.nombreCaracteristica}"></option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label>Nivel 3</label>
+                        <input type="number" min="1" max="5" th:field="*{nivel3}">
+                    </div>
+                </div>
+
+                <div class="acciones" style="margin-top:18px;">
+                    <button type="submit" class="boton">Guardar puesto</button>
+                    <a class="boton boton-secundario" th:href="@{/empresa/dashboard}">Volver al dashboard</a>
+                </div>
+            </form>
+
+        </section>
+    </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de oferente</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Detalle de oferente</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/empresa/dashboard}">Dashboard</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+        <section class="panel">
+
+            <h1 class="titulo-pagina">Detalle de oferente</h1>
+
+            <div class="grid grid-2">
+                <div class="card">
+                    <h3 th:text="${oferente.nombreOferente + ' ' + oferente.primerApellido}"></h3>
+                    <p><strong>Identificación:</strong> <span th:text="${oferente.identificacion}"></span></p>
+                    <p><strong>Teléfono:</strong> <span th:text="${oferente.telefono}"></span></p>
+                    <p><strong>Residencia:</strong> <span th:text="${oferente.lugarResidencia}"></span></p>
+                    <p><strong>Nacionalidad:</strong> <span th:text="${oferente.nacionalidad}"></span></p>
+                    <p th:if="${oferente.rutaCurriculum != null}">
+                        <a class="btn" th:href="@{'/empresa/candidato/' + ${oferente.usuarioId} + '/cv'}" target="_blank">
+                            Ver CV PDF
+                        </a>
+                    </p>
+                    <p th:if="${oferente.rutaCurriculum == null}">
+                        <span class="badge">No hay CV subido</span>
+                    </p>
+                </div>
+
+                <div class="card">
+                    <h3>Habilidades</h3>
+                    <div class="contenedor-tabla">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Característica</th>
+                                <th>Nivel</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="h : ${habilidades}">
+                                <td th:text="${h.caracteristica.nombreCaracteristica}"></td>
+                                <td th:text="${h.nivel}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="acciones" style="margin-top:18px;">
+                <a class="boton boton-secundario" th:href="@{/empresa/dashboard}">Volver</a>
+            </div>
+
+        </section>
+    </div>
+</main>
+
+</body>
+</html>

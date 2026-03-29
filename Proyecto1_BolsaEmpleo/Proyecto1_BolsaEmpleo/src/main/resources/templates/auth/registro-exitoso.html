@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro enviado</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Bolsa de Empleo</span>
+        </div>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+
+        <section class="panel">
+            <h1 class="titulo-pagina">Registro enviado correctamente</h1>
+
+            <p class="subtitulo-pagina" th:text="${mensaje}">
+                Debe esperar aprobación del administrador.
+            </p>
+
+            <div class="acciones">
+                <a class="boton" th:href="@{/login}">Ir a login</a>
+                <a class="boton boton-secundario" th:href="@{/}">
+                    Volver al inicio
+                </a>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard admin</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Administrador</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/admin/empresas-pendientes}">Empresas pendientes</a>
+            <a th:href="@{/admin/oferentes-pendientes}">Oferentes pendientes</a>
+            <a th:href="@{/admin/caracteristicas}">Características</a>
+            <a th:href="@{/admin/reporte-pdf}">Reporte PDF</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+
+
+        <section class="panel">
+            <h1 class="titulo-pagina">Dashboard administrador</h1>
+            <p class="subtitulo-pagina">
+                Apruebe registros, mantenga el catálogo de características y genere reportes PDF de puestos por mes.
+            </p>
+
+            <div class="rejilla-estadisticas">
+
+                <div class="tarjeta-estadistica">
+                    <span class="texto-suave">Módulo</span>
+                    <strong>Empresas</strong>
+                    <small class="pista">Revise y apruebe registros pendientes.</small>
+                </div>
+
+                <div class="tarjeta-estadistica">
+                    <span class="texto-suave">Módulo</span>
+                    <strong>Oferentes</strong>
+                    <small class="pista">Autorice nuevos perfiles.</small>
+                </div>
+
+                <div class="tarjeta-estadistica">
+                    <span class="texto-suave">Módulo</span>
+                    <strong>Características</strong>
+                    <small class="pista">Administre categorías y subcategorías.</small>
+                </div>
+
+                <div class="tarjeta-estadistica">
+                    <span class="texto-suave">Módulo</span>
+                    <strong>Reportes</strong>
+                    <small class="pista">Descargue el PDF mensual con resumen y detalle.</small>
+                </div>
+
+            </div>
+        </section>
+
+
+        <section class="panel">
+            <h2 class="titulo-pagina" style="font-size:1.75rem;">Puestos por mes</h2>
+
+            <div class="contenedor-tabla">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Mes</th>
+                        <th>Cantidad</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="dato : ${puestosPorMes}">
+                        <td th:text="${dato.key}"></td>
+                        <td th:text="${dato.value}"></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+</body>
+</html>

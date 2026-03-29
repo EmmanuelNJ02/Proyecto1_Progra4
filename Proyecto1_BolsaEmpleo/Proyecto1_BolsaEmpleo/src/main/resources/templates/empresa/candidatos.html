@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Candidatos</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Candidatos</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/empresa/dashboard}">Dashboard</a>
+            <a th:href="@{/logout}">Cerrar sesión</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+
+        <section class="panel">
+            <h1 class="titulo-pagina">Candidatos para el puesto</h1>
+
+            <p class="subtitulo-pagina">
+                Puesto: <strong th:text="${puesto.descripcionGeneral}"></strong>
+            </p>
+
+            <div th:if="${#lists.isEmpty(candidatos)}" class="vacio">
+                No se encontraron candidatos.
+            </div>
+
+            <div th:if="${not #lists.isEmpty(candidatos)}" class="contenedor-tabla">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Oferente</th>
+                        <th>Requisitos cumplidos</th>
+                        <th>% coincidencia</th>
+                        <th>Acción</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="c : ${candidatos}">
+                        <td th:text="${c.nombreCompleto}"></td>
+                        <td>
+                            <span th:text="${c.requisitosCumplidos}"></span> /
+                            <span th:text="${c.requisitosTotales}"></span>
+                        </td>
+                        <td th:text="${#numbers.formatDecimal(c.porcentajeCoincidencia,1,2)} + '%'"></td>
+                        <td>
+                            <a class="boton" th:href="@{'/empresa/candidato/' + ${c.usuarioId}}">
+                                Ver detalle
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="acciones" style="margin-top:18px;">
+                <a class="boton boton-secundario" th:href="@{/empresa/dashboard}">
+                    Volver
+                </a>
+            </div>
+
+        </section>
+
+    </div>
+</main>
+
+</body>
+</html>

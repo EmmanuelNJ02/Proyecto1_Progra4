@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de oferente</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Bolsa de Empleo</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/login}">Login</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+
+        <section class="panel">
+            <h1 class="titulo-pagina">Registro de oferente</h1>
+
+            <p class="subtitulo-pagina">
+                Ingrese sus datos personales. Una vez aprobado podrá iniciar sesión, registrar habilidades y subir su currículo.
+            </p>
+
+            <div th:if="${error}" class="alerta alerta-error" th:text="${error}"></div>
+
+            <form th:action="@{/registro/oferente}" method="post" th:object="${registroOferenteForm}">
+
+                <div class="rejilla-formulario rejilla-formulario-2">
+
+                    <div>
+                        <label>Identificación</label>
+                        <input type="text" th:field="*{identificacion}" placeholder="Número de identificación">
+                    </div>
+
+                    <div>
+                        <label>Nombre</label>
+                        <input type="text" th:field="*{nombreOferente}" placeholder="Nombre">
+                    </div>
+
+                    <div>
+                        <label>Primer apellido</label>
+                        <input type="text" th:field="*{primerApellido}" placeholder="Primer apellido">
+                    </div>
+
+                    <div>
+                        <label>Segundo apellido</label>
+                        <input type="text" th:field="*{segundoApellido}" placeholder="Segundo apellido">
+                    </div>
+
+                    <div>
+                        <label>Nacionalidad</label>
+                        <input type="text" th:field="*{nacionalidad}" placeholder="Nacionalidad">
+                    </div>
+
+                    <div>
+                        <label>Teléfono</label>
+                        <input type="text" th:field="*{telefono}" placeholder="8888-8888">
+                    </div>
+
+                    <div>
+                        <label>Correo electrónico</label>
+                        <input type="email" th:field="*{correoElectronico}" placeholder="correo@ejemplo.com">
+                    </div>
+
+                    <div>
+                        <label>Lugar de residencia</label>
+                        <input type="text" th:field="*{lugarResidencia}" placeholder="Lugar de residencia">
+                    </div>
+
+                    <div>
+                        <label>Clave</label>
+                        <input type="password" th:field="*{clave}" placeholder="Clave de acceso">
+                    </div>
+
+                </div>
+
+                <div class="acciones" style="margin-top:18px;">
+                    <button type="submit">Registrar oferente</button>
+                    <a class="boton boton-secundario" th:href="@{/login}">
+                        Volver
+                    </a>
+                </div>
+
+            </form>
+
+        </section>
+
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="contenedor">
+        <span>Registro de oferentes</span>
+        <span>Universidad Nacional</span>
+    </div>
+</footer>
+
+</body>
+</html>

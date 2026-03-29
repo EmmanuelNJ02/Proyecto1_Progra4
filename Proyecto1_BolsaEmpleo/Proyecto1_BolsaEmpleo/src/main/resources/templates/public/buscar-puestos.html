@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buscar puestos</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+
+<header class="encabezado-sitio">
+    <div class="contenedor">
+        <div class="marca">
+            <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+            <span>Bolsa de Empleo</span>
+        </div>
+
+        <nav class="navegacion-sitio">
+            <a th:href="@{/}">Inicio</a>
+            <a th:href="@{/registro/empresa}">Registrar empresa</a>
+            <a th:href="@{/registro/oferente}">Registrar oferente</a>
+            <a th:href="@{/login}">Login</a>
+        </nav>
+    </div>
+</header>
+
+<main class="pagina">
+    <div class="contenedor">
+
+        <section class="panel">
+            <h1 class="titulo-pagina">Buscar puestos por características</h1>
+            <p class="subtitulo-pagina">
+                Seleccione una característica y el sistema mostrará los puestos públicos relacionados. Si eliges una categoría padre, también se toman en cuenta sus subcategorías.
+            </p>
+
+            <div th:if="${error}" class="alert alert-error" th:text="${error}"></div>
+
+            <form th:action="@{/buscar-puestos}" method="post" th:object="${busquedaForm}">
+                <div class="form-grid form-grid-2">
+                    <div>
+                        <label>Característica</label>
+                        <select th:field="*{caracteristicaId}">
+                            <option value="">-- Seleccione --</option>
+                            <option th:each="c : ${todasLasCaracteristicas}" th:value="${c.id}" th:text="${c.nombreCaracteristica}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="acciones" style="margin-top:16px;">
+                    <button type="submit" class="boton">Buscar</button>
+                    <a class="boton boton-secundario" th:href="@{/buscar-puestos}">Limpiar</a>
+                </div>
+            </form>
+        </section>
+
+        <section class="panel">
+            <h2 class="titulo-pagina" style="font-size:1.75rem;">Resultados</h2>
+
+            <div th:if="${resultados == null}" class="vacio">Aún no ha realizado una búsqueda.</div>
+            <div th:if="${resultados != null and #lists.isEmpty(resultados)}" class="vacio">No se encontraron puestos.</div>
+
+            <div th:if="${resultados != null and not #lists.isEmpty(resultados)}" class="grid grid-2">
+                <article class="card job-card" th:each="p : ${resultados}">
+                    <span class="badge" th:text="${p.empresa}"></span>
+                    <h3 th:text="${p.descripcionGeneral}"></h3>
+                    <div class="salary">₡ <span th:text="${#numbers.formatDecimal(p.salario,1,2)}"></span></div>
+                </article>
+            </div>
+        </section>
+
+    </div>
+</main>
+
+<footer class="footer">
+    <div class="contenedor">
+        <span>Consulta pública de puestos</span>
+        <span>Universidad Nacional</span>
+    </div>
+</footer>
+
+</body>
+</html>

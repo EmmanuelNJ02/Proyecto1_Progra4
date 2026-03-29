@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+
+<body class="pagina-login">
+
+<div class="contenedor-login">
+    <div class="tarjeta tarjeta-login">
+
+
+        <section class="visual-login">
+            <div>
+                <div class="marca">
+                    <img th:src="@{/img/empleo.jpg}" alt="Logo" class="marca-logo">
+                    <span>Bolsa de Empleo</span>
+                </div>
+
+                <h1>Accede al sistema</h1>
+                <p>
+                    Empresas, oferentes y administradores pueden ingresar aquí para gestionar publicaciones,
+                    habilidades, aprobaciones y reportes.
+                </p>
+            </div>
+
+            <div class="acciones">
+                <a class="boton boton-secundario" th:href="@{/registro/empresa}">
+                    Registrar empresa
+                </a>
+                <a class="boton boton-secundario" th:href="@{/registro/oferente}">
+                    Registrar oferente
+                </a>
+            </div>
+        </section>
+
+
+        <section class="formulario-login">
+            <img th:src="@{/img/login.jpg}" alt="Logo" class="marca-logo">
+            <h2>Login</h2>
+
+            <p class="subtitulo-pagina">
+                Ingresa tu correo y tu clave para entrar al sistema.
+            </p>
+
+            <p th:if="${error}" class="alerta alerta-error" th:text="${error}"></p>
+
+            <form th:action="@{/login}" method="post" th:object="${loginForm}">
+                <div class="rejilla-formulario">
+
+                    <div>
+                        <label>Correo</label>
+                        <input type="text" th:field="*{correo}" placeholder="correo@ejemplo.com">
+                    </div>
+
+                    <div>
+                        <label>Clave</label>
+                        <input type="password" th:field="*{clave}" placeholder="Tu contraseña">
+                    </div>
+
+                </div>
+
+                <div class="acciones" style="margin-top:18px;">
+                    <button type="submit">Ingresar</button>
+                    <a class="boton boton-secundario" th:href="@{/}">
+                        Volver al inicio
+                    </a>
+                </div>
+            </form>
+        </section>
+
+    </div>
+</div>
+
+</body>
+</html>
